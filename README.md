@@ -1,1 +1,0 @@
-# Technical-task_ERP.AERO

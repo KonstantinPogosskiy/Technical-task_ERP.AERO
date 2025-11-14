@@ -19,3 +19,16 @@ CREATE TABLE IF NOT EXISTS user_sessions (
   UNIQUE KEY uniq_access_jti (access_jti),
   UNIQUE KEY uniq_refresh_jti (refresh_jti)
 );
+
+CREATE TABLE IF NOT EXISTS files (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(191) NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  stored_name VARCHAR(255) NOT NULL,
+  extension VARCHAR(50),
+  mime_type VARCHAR(100),
+  size BIGINT UNSIGNED,
+  uploaded_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_files_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_files_user_uploaded_at (user_id, uploaded_at)
+);
