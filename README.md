@@ -1,4 +1,4 @@
-# ERP.AERO Test Assignment – Node.js REST API
+# Technical task ERP.AERO
 
 ## Описание
 
