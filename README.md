@@ -5,7 +5,7 @@
 REST API с JWT аутентификацией, управлением сессиями и загрузкой файлов.
 
 ## Эндпоинты
-
+```
 API:
     o /signin [POST] - запрос jwt-токена по id и паролю;
     o /signin/new_token [POST] - обновление jwt-токена по refresh токену
@@ -28,13 +28,14 @@ API:
     • При удачной регистрации вернуть пару jwt-токен и refresh токен;
     o /info [GET] - возвращает id пользователя;
     o /logout [GET] - выйти из системы;
-
+```
 Аутентификация использует Bearer token в header.
 
 ## Переменные
 
 Переменные задаются через `.env` файл:
 
+```
 PORT=3000
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
@@ -47,6 +48,7 @@ ACCESS_TOKEN_TTL_SECONDS=600
 REFRESH_TOKEN_TTL_SECONDS=604800
 PASSWORD_SALT_ROUNDS=10
 UPLOAD_DIR=./uploads
+```
 
 ## Запуск
 
