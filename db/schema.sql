@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS users (
+  id VARCHAR(191) NOT NULL PRIMARY KEY,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS user_sessions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(191) NOT NULL,
+  access_jti VARCHAR(191) NOT NULL,
+  refresh_jti VARCHAR(191) NOT NULL,
+  access_expires_at DATETIME NOT NULL,
+  refresh_expires_at DATETIME NOT NULL,
+  refresh_token_hash VARCHAR(255) NOT NULL,
+  revoked_at DATETIME DEFAULT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_user_sessions_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  UNIQUE KEY uniq_access_jti (access_jti),
+  UNIQUE KEY uniq_refresh_jti (refresh_jti)
+);
